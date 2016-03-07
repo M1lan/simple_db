@@ -1,35 +1,37 @@
-#include <conio.h>
-#incluede <iostream.h>
-
+#include <stdlib.h>
 #include <stdio.h>
+#include <ctype.h>
 
 int main(int argc, char *argv[])
 {
-  FILE *pFile;
+  FILE *dbFile;
+  char key[99];
+  int value;
+  char answer;
 
-  // open dat file
-  pFile = fopen("simple_db.txt", "w");
-
-  if (pFile != NULL)
-    {
-      while ()
-        {
-          printf("Name: ");
-          scanf("%s", name);
-          printf("Test score: ");
-          scanf("%d", &score);
-        }
-      fclose(pFile);
-    }
-  else
+  dbFile = fopen("simple_db.txt", "w");
+  if (dbFile == NULL)
     {
       printf("ERROR: Could not open simple_db.txt\n");
+      exit(1);
     }
 
+  while(true)
+    {
+      printf("Key: ");
+      scanf("%s", key);
+      fprintf(dbFile, "%s ", key);
+      printf("Value: ");
+      scanf("%d", &value);
+      fprintf(dbFile, "%d\n", value);
 
-  /*
-    "r"
-    "w"
-    "a"
-    "r+"
-   */
+      printf("Do you want to store another entry? (y/n) ");
+      answer = getchar();
+      if (answer == "n")
+        {
+          break;
+        }
+    }
+  fclose(dbFile);
+  exit(0);
+}
