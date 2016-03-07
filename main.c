@@ -16,7 +16,7 @@ int main(int argc, char *argv[])
       exit(1);
     }
 
-  while (answer != 'n')
+  while (tolower(answer) != 'n')
   {
     printf("Key: ");
     scanf("%s", key);
